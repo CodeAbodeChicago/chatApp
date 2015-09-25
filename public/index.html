@@ -1,0 +1,31 @@
+<!--index.html for chat app-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Chat App w/ Socket.io</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--css-->
+	<link href="./css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<!--wrapper to display all messages-->
+	<ul id="msg-wrap">
+		<!--message template-->
+		<li>Get off the computer and go outside!!!</li>
+	</ul>
+	<!--form for submitting messages-->
+	<form id="msg-form" action="">
+		<input type="text" name="new-msg" autocomplete="off" />
+		<input type="submit" />
+	</form>
+
+	<!--include socket.io client side library-->
+	<script src="/socket.io/socket.io.js"></script>
+	<!--custom js-->
+	<script src="./main.js"></script>
+</body>
+</html>
