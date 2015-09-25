@@ -1,0 +1,46 @@
+/*styles.css for chat app*/
+
+* {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+}
+
+form {
+	background: #CDD1D6;
+	padding: 3px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+form input {
+	border: 0;
+	padding: 10px;
+	width: 90%;
+}
+
+.btn {
+	width: 9%;
+	background: #CDD1D6;
+	border: none;
+}
+
+#msg-wrap {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#msg-wrap li {
+	padding: 5px 10px;
+}
+
+#msg-wrap li:nth-child(odd) {
+	background: #CDD1D6;
+}
