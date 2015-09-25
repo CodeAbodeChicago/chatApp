@@ -12,6 +12,8 @@ var io = socketMod(server);
 
 var path = require('path');
 
+var port = process.env.PORT || 3000; // for deploying to heroku
+
 // make all files in 
 var publicPath = path.join(__dirname, "public");
 app.use(express.static(publicPath));
@@ -32,6 +34,6 @@ io.on('connection', function(socket) {
 	});
 });
 
-server.listen(3000, function() {
-	console.log("listening on **:3000");
+server.listen(port, function() {
+	console.log("listening on *:" + port);
 });
