@@ -10,21 +10,70 @@ var chatInput = chatForm.elements["new-msg"];
 // when form is submitted, emit the 'chat message' event
 chatForm.onsubmit = function(e) {
 	e.preventDefault();
-	socket.emit('chat message', chatInput.value);
-	chatInput.value = "";
+
+	if (chatInput.value && chatInput.value != ""){
+		socket.emit('sendchat', chatInput.value);
+		chatInput.value = "";
+	} else {
+		console.log("no input!");
+	}
+
 	return false;
 };
 
+
 // get template for new messages
 var msgWrap = document.getElementById("msg-wrap");
-var msgTemplate = msgWrap.querySelector("li");
-msgWrap.removeChild(msgTemplate);
+var myMsgTemplate = msgWrap.querySelector(".this-user");
+var otherMsgTemplate = msgWrap.querySelector(".other-user");
+msgWrap.removeChild(myMsgTemplate);
+msgWrap.removeChild(otherMsgTemplate);
 
-// when the 'chat message' event is recieved
+
+// listener
+// when the 'join' event is recieved, inform everyone
+// that a new user has joined
+// socket.on('join', function(name) {
+socket.on('connect', function() {
+	socket.emit('adduser', prompt("what's your name?")); // call server-side function add user
+});
+
+
+// listener
+// when the 'update-chat' event is recieved
 // clone the message template, fill it in, 
 // and add it to the msg-wrap element on the page
-socket.on('chat message', function(msg) {
-	var clone = msgTemplate.cloneNode(true);
-	clone.textContent = msg;
+// template for your messages
+socket.on('update-chat-you', function(username, msg) {
+	var clone = myMsgTemplate.cloneNode(true);
+	clone.querySelector('.username').textContent = username;
+	clone.querySelector('.msg').textContent = msg;
 	msgWrap.appendChild(clone);
+	clone.scrollIntoView(false); // scroll to bottom of page
 });
+
+// template for other messages
+socket.on('update-chat-other', function(username, msg) {
+	var clone = otherMsgTemplate.cloneNode(true);
+	clone.querySelector('.username').textContent = username;
+	clone.querySelector('.msg').textContent = msg;
+	msgWrap.appendChild(clone);
+	clone.scrollIntoView(false); // scroll to bottom of page
+});
+
+
+// get users wrap from DOM
+var userWrap = document.getElementById("users-wrap");
+var userList = userWrap.querySelector(".user-list");
+
+
+// listener
+// when server emits 'updateusers', update username list
+socket.on('updateusers', function(usernamesObj) {
+	userList.textContent = "";
+	for (key in usernamesObj) {
+		var newUser = usernamesObj[key] + "<br />";
+		userList.innerHTML += newUser;
+	}
+});
+

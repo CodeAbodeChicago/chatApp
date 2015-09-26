@@ -12,16 +12,26 @@
 </head>
 
 <body>
-	<!--wrapper to display all messages-->
-	<ul id="msg-wrap">
-		<!--message template-->
-		<li>Get off the computer and go outside!!!</li>
-	</ul>
-	<!--form for submitting messages-->
-	<form id="msg-form" action="">
-		<input type="text" name="new-msg" autocomplete="off" />
-		<input class="btn" type="submit" />
-	</form>
+
+	<div id="page-wrap">
+		<div id="users-wrap">
+			<b>USERS</b>
+			<div class="user-list"></div>
+		</div>
+
+			<!--wrapper to display all messages-->
+		<div id="msg-wrap">
+			<!--message template-->
+			<div class="this-user"><span class="username" style="text-align:right;">Rex</span> : <p class="msg">Get off the computer and go outside!!!</p></div>
+			<div class="other-user"><p class="msg" style="text-align:right;">I am the night!!!!</p> : <span class="username">Batman</span></div>
+		</div>
+
+		<!--form for submitting messages-->
+		<form id="msg-form" action="">
+			<input type="text" name="new-msg" autocomplete="off" />
+			<input class="btn" type="submit" />
+		</form>
+	</div>
 
 	<!--include socket.io client side library-->
 	<script src="/socket.io/socket.io.js"></script>

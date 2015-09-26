@@ -31,16 +31,48 @@ form input {
 	border: none;
 }
 
-#msg-wrap {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+#page-wrap {
+	width: 100%;
+	min-height: 94vh;
+	margin: 0px;
+	padding: 0px;
 }
 
-#msg-wrap li {
+#users-wrap{
+	position:fixed;
+	overflow-y:auto;
+	left:0;
+	width: 20%;
+	height:100%;
+	border-right: 1px solid black;
+	margin: 0px;
+	padding: 10px;
+	vertical-align: top;
+}
+
+#msg-wrap {
+	width: 80%;
+	height: 93vh;
+	overflow-y:auto;
+	margin: 0px 0px 0px 20%;
+	padding: 10px;
+	vertical-align: top;
+}
+
+#msg-wrap div {
 	padding: 5px 10px;
 }
 
-#msg-wrap li:nth-child(odd) {
+#msg-wrap div:nth-child(odd) {
 	background: #CDD1D6;
+}
+
+.username {
+	display: inline-block;
+	width: 14%;
+}
+
+.msg {
+	display: inline-block;
+	width: 84%;
 }
