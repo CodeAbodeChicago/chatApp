@@ -1,5 +1,10 @@
 // main.js for chat app
 
+// thanks to Tamas Piros and Michael Mukhin
+// http://socket.io/get-started/chat/
+// http://www.tamas.io/simple-chat-application-using-node-js-and-socket-io/
+// http://psitsmike.com/2011/09/node-js-and-socket-io-chat-tutorial/
+
 // create new instance of global io() object
 var socket = io();
 

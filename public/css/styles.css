@@ -75,4 +75,5 @@ form input {
 .msg {
 	display: inline-block;
 	width: 84%;
+	word-wrap: break-word;
 }
