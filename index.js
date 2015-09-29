@@ -4,25 +4,19 @@
 var express = require('express');
 var app = express();
 
-var http = require('http');
-var server = http.Server(app);
+var port = process.env.PORT || 3000; // for deploying to heroku
+var server = app.listen(port, function() {
+	console.log("listening on *:" + port);
+});
 
 var socketMod = require('socket.io');
 var io = socketMod(server);
 
 var path = require('path');
 
-var port = process.env.PORT || 3000; // for deploying to heroku
-
 // make all files in 
 var publicPath = path.join(__dirname, "public");
 app.use(express.static(publicPath));
-
-// routing
-app.get('/', function(req, res) { 
-	// res.send('<h1>HELLO</h1> <h2>Hello</h2> <h3>Hello</h3> <h4>hello</h4> <h5>hello</h5> <h6>hello</h6>'); // write html directly to page
-	res.sendFile(__dirname + '/index.html');
-});
 
 // currently connected users
 var usernames = {};
@@ -52,6 +46,3 @@ io.on('connection', function(socket) {
 
 });
 
-server.listen(port, function() {
-	console.log("listening on *:" + port);
-});
